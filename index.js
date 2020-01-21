@@ -18,8 +18,10 @@ mongoose.connect('mongodb://localhost/CRMdb',{
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 
-
 routes(app);
+
+// to serve static files
+app.use(express.static('public')); // public is the folder name which we have to allow to serve static files
 
 app.get("/",(req,res) => 
     res.send(`Node and Express server running on posr ${PORT}`)
