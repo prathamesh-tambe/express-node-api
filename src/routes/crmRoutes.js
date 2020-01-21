@@ -1,4 +1,4 @@
-import {addNewContact,getContacts,getContactsWithId,updateContact} from '../controllers/crmController';
+import {addNewContact,getContacts,getContactsWithId,updateContact,deleteContact} from '../controllers/crmController';
 
 const routes = (app) =>{
     app.route('/contact')
@@ -14,7 +14,7 @@ const routes = (app) =>{
             next();
         },updateContact)
 
-        .delete((req,res) => res.send(`contact delete api working ${req.params.contactId}`));        
+        .delete(deleteContact);        
 
 } 
 
