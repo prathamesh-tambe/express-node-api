@@ -1,4 +1,4 @@
-import {addNewContact,getContacts} from '../controllers/crmController';
+import {addNewContact,getContacts,getContactsWithId,updateContact} from '../controllers/crmController';
 
 const routes = (app) =>{
     app.route('/contact')
@@ -6,14 +6,13 @@ const routes = (app) =>{
         .post(addNewContact);        
     
     app.route('/contact/:contactId')
+        .get(getContactsWithId)
         .put((req,res,next) => {
             console.log("This is middleware request");
             console.log(`Request from : ${req.originalUrl}`);
             console.log(`Request from : ${req.method}`);
             next();
-        },(req,res,next) => {
-            res.send(`contact put api working ${req.params.contactId}`);
-        })
+        },updateContact)
 
         .delete((req,res) => res.send(`contact delete api working ${req.params.contactId}`));        
 
